@@ -1,8 +1,9 @@
-// importamos la libreria
+// importamos la libreria--- iperativo y funciones no a objeto 
 import express from "express"; // es6
 import "dotenv/config";
-import aprendiz from "../api/src/modules/aprendices/aprendiz.routes.js";
-import usuario from "../api/src/modules/auth/auth.routes.js";
+import aprendiz from "../sgaprendiz/src/modules/aprendices/aprendiz.routes.js";
+import usuario from "../sgaprendiz/src/modules/auth/auth.routes.js";
+import ficha from "../sgaprendiz/src/modules/fichas/ficha.routes.js";
 import morgan from "morgan";
 
 import cors from "cors";
@@ -11,6 +12,7 @@ import cors from "cors";
 const app = express();
 app.use(express.json());
 
+require('dotenv').config()
 /* morgan(function (tokens, req, res) {
   return [
     tokens.method(req, res),
@@ -27,6 +29,8 @@ app.use(cors());
 
 app.use("/aprendiz", aprendiz);
 app.use("/usuario", usuario);
+app.use("/ficha", ficha);
+const port = process.env.PORT || 4100;
 
 app.listen(process.env.PORT, () => {
   console.log(`API ON in port: ${process.env.PORT}`);
